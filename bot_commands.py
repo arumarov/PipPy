@@ -1,18 +1,23 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
 import datetime
+from spy import *
 
 
 def hi_command(update: Update, context: CallbackContext): # в момент когда пользователь пришлет "hello", будет выполнена эта команда
+    log(update, context)
     update.message.reply_text(f'Hi {update.effective_user.first_name}!') # печатаем Hello и забираем имя пользователя
 
 def help_command(update: Update, context: CallbackContext): 
+    log(update, context)
     update.message.reply_text(f'/hi\n/time\n/help\n/sum') #возвращает помощь
 
 def time_command(update: Update, context: CallbackContext): 
+    log(update, context)
     update.message.reply_text(f'{datetime.datetime.now().time()}')
 
 def sum_command(update: Update, context: CallbackContext): 
+    log(update, context)
     msg = update.message.text
     print(msg)
     items = msg.split(' ') # /sum 123 5343532
