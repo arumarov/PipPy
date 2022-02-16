@@ -55,15 +55,17 @@
 
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, CallbackContext
+from bot_commands import *
 
 
-def hello(update: Update, context: CallbackContext) -> None: # в момент когда пользователь пришлет "hello", будет выполнена эта команда
-    update.message.reply_text(f'Hello {update.effective_user.first_name}') # печатаем Hello и забираем имя пользователя
 
 
 updater = Updater('5261564788:AAGvVd04bSYxydwIlh4yQxH7VUxfgXGsUuw')
 
-updater.dispatcher.add_handler(CommandHandler('hello', hello))
+updater.dispatcher.add_handler(CommandHandler('hi', hi_command))
+updater.dispatcher.add_handler(CommandHandler('time', time_command)) #добавляем сколько угодно комманд
+updater.dispatcher.add_handler(CommandHandler('help', help_command))
+updater.dispatcher.add_handler(CommandHandler('sum', sum_command))
 print('server start')
 updater.start_polling()
 updater.idle()
